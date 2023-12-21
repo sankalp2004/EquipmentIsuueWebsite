@@ -1,0 +1,58 @@
+{% load static %}
+<!-- issue_equipment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Issue Equipment</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'images/maheblurubackground.jpeg' %}");
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            position: relative;
+            padding-bottom: 200px; /* Space for the bottom image */
+        }
+
+        .bottom-image {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px; /* Adjust width as needed */
+            height: auto;
+        }
+        .fieldWrapper {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Issue Equipment</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                {{ form.equipment.label_tag }}
+                {{ form.equipment }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.borrower.label_tag }}
+                {{ form.borrower }}
+            </div>
+            <div class="fieldWrapper">
+                <label for="id_date_of_issue">Date of Issue</label>
+                <input type="date" id="id_date_of_issue" name="date_of_issue">
+            </div>
+            <button type="submit">Issue</button>
+            <img src="{% static 'images/maheblr.png' %}" alt="Maheblr Logo" class="bottom-image">
+        </form>
+    </div>
+</body>
+</html>

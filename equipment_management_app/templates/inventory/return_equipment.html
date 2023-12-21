@@ -1,0 +1,62 @@
+{% load static %}
+<!-- return_equipment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Return Equipment</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'images/maheblurubackground.jpeg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            position: relative;
+            padding-bottom: 100px; /* Space for the bottom image */
+        }
+        .bottom-image {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px; /* Adjust width as needed */
+            height: auto;
+        }
+        .fieldWrapper {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Return Equipment</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                {{ form.equipment.label_tag }}
+                {{ form.equipment }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.borrower.label_tag }}
+                {{ form.borrower }}
+            </div>
+            <div class="fieldWrapper">
+                <label for="id_date_of_issue">Date of Issue</label>
+                <input type="date" id="id_date_of_issue" name="date_of_issue">
+            </div>
+            <div class="fieldWrapper">
+                <label for="id_date_of_return">Date of Return</label>
+                <input type="date" id="id_date_of_return" name="date_of_return">
+            </div>
+            <div class="fieldWrapper">
+                <label for="id_penalty">Penalty</label>
+                <input type="number" id="id_penalty" name="penalty" min="0" max="100000">
+            </div>
+            <button type="submit">Return</button>
+            <img src="{% static 'images/maheblr.png' %}" alt="Maheblr Logo" class="bottom-image">
+        </form>
+    </div>
+</body>
+</html>
